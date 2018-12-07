@@ -19,10 +19,10 @@ class SoftDeleteServiceProvider extends ServiceProvider
     public function boot()
     {
         // define soft delete db schema
-        Blueprint::macro('betterSoftDeletes', function() {
+        Blueprint::macro('betterSoftDeletes', function () {
             return $this->integer('deleted_at')->default(0)->comment('soft deletes flag');
         });
-        Blueprint::macro('dropBetterSoftDeletes', function() {
+        Blueprint::macro('dropBetterSoftDeletes', function () {
             return $this->dropColumn('deleted_at');
         });
     }

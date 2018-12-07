@@ -2,7 +2,6 @@
 
 namespace Lybc\BetterSoftDelete\Tests;
 
-
 use Illuminate\Support\Facades\Schema;
 use Lybc\BetterSoftDelete\Tests\Models\Comment;
 use Lybc\BetterSoftDelete\Tests\Models\Post;

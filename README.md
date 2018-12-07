@@ -15,6 +15,7 @@ $ composer require lybc/laravel-better-softdelete -vvv
 MIT
 
 ## thanks
+[package-builder](https://github.com/overtrue/package-builder)
 
 [http://blog.dreamlikes.cn/archives/892](http://blog.dreamlikes.cn/archives/892)
 

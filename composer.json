@@ -28,8 +28,5 @@
                 "Lybc\\BetterSoftDelete\\SoftDeleteServiceProvider"
             ]
         }
-    },
-    "require": {
-        "phpunit/phpunit": "^7.5"
     }
 }

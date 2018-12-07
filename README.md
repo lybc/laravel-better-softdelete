@@ -45,6 +45,15 @@ class SomeModel extends Model
 
 [example](https://github.com/lybc/laravel-better-softdelete/blob/master/tests/DbSchemaTest.php)
 
+如果没有使用本包提供的方式定义软删除字段，可以在模型中定义常量重写软删除字段
+
+```php
+class SomeModel extends Model
+{
+    const DELETED_AT_COLUMN = 'deleted';
+}
+```
+
 ## License
 
 MIT

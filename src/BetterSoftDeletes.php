@@ -18,7 +18,8 @@ trait BetterSoftDeletes
      */
     public function getDeletedAtColumn()
     {
-        return 'deleted_at';
+        return defined('static::DELETED_AT_COLUMN') 
+            ? static::DELETED_AT_COLUMN : 'deleted_at';
     }
 
     /**

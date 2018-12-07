@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
-
     protected function setUp()
     {
         parent::setUp();
@@ -29,14 +28,14 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase(\Illuminate\Foundation\Application $app)
     {
-        $app['db']->connection()->getSchemaBuilder()->create('posts', function ( $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('posts', function ($table) {
             $table->increments('id');
             $table->string('title');
             $table->text('body');
             $table->betterSoftDeletes();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('comments', function ( $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('comments', function ($table) {
             $table->increments('id');
             $table->unsignedInteger('post_id');
             $table->string('content');

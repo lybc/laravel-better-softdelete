@@ -2,7 +2,6 @@
 
 namespace Lybc\BetterSoftDelete;
 
-
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**

@@ -1,0 +1,33 @@
+{
+    "name": "lybc/laravel-better-softdelete",
+    "description": "A better way to soft delete in laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lybc",
+            "email": "yibocheng.li@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.1|^7.0",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lybc\\BetterSoftDelete\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lybc\\BetterSoftDelete\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lybc\\BetterSoftDelete\\SoftDeleteServiceProvider"
+            ]
+        }
+    }
+}

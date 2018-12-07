@@ -8,7 +8,6 @@
 
 namespace Lybc\BetterSoftDelete;
 
-
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope as BaseScope;
@@ -84,6 +83,4 @@ class BetterSoftDeletingScope extends BaseScope
             return $builder;
         });
     }
-
-
 }

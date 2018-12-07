@@ -1,5 +1,5 @@
 # Laravel Better Soft Delete
-
+[![Build Status](https://travis-ci.org/lybc/laravel-better-softdelete.svg?branch=master)](https://travis-ci.org/lybc/laravel-better-softdelete)
 ## Installing
 
 ```bash

@@ -23,7 +23,9 @@ trait BetterSoftDeletes
         // 级联删除
         static::deleting(function (Model $model) {
             $cascadeDeletes = $model->getCascadingDeletes();
-            if (empty($cascadeDeletes)) return;
+            if (empty($cascadeDeletes)) {
+                return;
+            }
 
             $delete = $model->forceDeleting ? 'forceDelete' : 'delete';
             foreach ($cascadeDeletes as $item) {

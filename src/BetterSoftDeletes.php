@@ -2,6 +2,8 @@
 
 namespace Lybc\BetterSoftDelete;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -11,6 +13,37 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 trait BetterSoftDeletes
 {
     use SoftDeletes;
+
+    /**
+     * boot方法注册级联删除
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        // 级联删除
+        static::deleting(function (Model $model) {
+            $cascadeDeletes = $model->getCascadingDeletes();
+            if (empty($cascadeDeletes)) return;
+
+            $delete = $model->forceDeleting ? 'forceDelete' : 'delete';
+            foreach ($cascadeDeletes as $item) {
+                if (! method_exists($model, $item) || !($model->{$item}() instanceof Relation)) {
+                    throw new \InvalidArgumentException('Invalid association relationship: ' . $item);
+                }
+                $model->{$item}()->{$delete}();
+            }
+        });
+    }
+
+    /**
+     * Fetch the defined cascading soft deletes for this model.
+     *
+     * @return array
+     */
+    protected function getCascadingDeletes()
+    {
+        return isset($this->cascadeDeletes) ? (array) $this->cascadeDeletes : [];
+    }
 
     /**
      * get soft delete column

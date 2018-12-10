@@ -13,6 +13,10 @@ class Post extends Model
 
     public $timestamps = false;
 
+    protected $cascadeDeletes = [
+        'comments'
+    ];
+
 
     public function comments()
     {

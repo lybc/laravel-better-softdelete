@@ -5,8 +5,9 @@ namespace Lybc\BetterSoftDelete\Tests;
 use Illuminate\Support\Facades\Schema;
 use Lybc\BetterSoftDelete\Tests\Models\Comment;
 use Lybc\BetterSoftDelete\Tests\Models\Post;
+use Lybc\BetterSoftDelete\Tests\Models\User;
 
-class DbSchemaTest extends TestCase
+class BetterSoftDeleteTest extends TestCase
 {
     protected function setUp()
     {
@@ -21,7 +22,7 @@ class DbSchemaTest extends TestCase
     {
         $postColumns = Schema::getColumnListing('posts');
         $commentColumns = Schema::getColumnListing('comments');
-        $this->assertEquals(['id', 'title', 'body', 'deleted_at'], $postColumns);
+        $this->assertEquals(['id', 'title', 'body', 'user_id', 'deleted_at'], $postColumns);
         $this->assertEquals(['id', 'post_id', 'content', 'deleted_at'], $commentColumns);
         $this->assertNotEmpty(Post::all());
         $this->assertNotEmpty(Comment::all());
@@ -110,6 +111,25 @@ class DbSchemaTest extends TestCase
 
         $this->assertEquals(Comment::count(), $beforeDeleteCount);
     }
+
+    /**
+     * test has many cascade delete
+     */
+    public function testCascadeDeleteHasMany()
+    {
+        $commentsCount = Comment::count();
+        $post = Post::first();
+        $post->delete();
+        $this->assertNotEquals($commentsCount, Comment::count());
+    }
+
+//    public function testCasCaseDeleteBelongsTo()
+//    {
+//        $usersCount = User::count();
+//        $post = Post::first();
+//        $post->delete();
+//        $this->assertNotEquals($usersCount, User::count());
+//    }
 
     private function getSoftDeletedModel()
     {

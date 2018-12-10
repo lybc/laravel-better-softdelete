@@ -28,14 +28,22 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase(\Illuminate\Foundation\Application $app)
     {
-        $app['db']->connection()->getSchemaBuilder()->create('posts', function ($table) {
+        $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->text('body');
+            $table->string('name');
+            $table->integer('age');
             $table->betterSoftDeletes();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('comments', function ($table) {
+        $app['db']->connection()->getSchemaBuilder()->create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('body');
+            $table->unsignedInteger('user_id');
+            $table->betterSoftDeletes();
+        });
+
+        $app['db']->connection()->getSchemaBuilder()->create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('post_id');
             $table->string('content');
